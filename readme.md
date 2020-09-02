@@ -1,26 +1,13 @@
 # v0.1.0 说明 #
-## 1. 基本说明  ##
-本项目是张量的正向计算和对应的自动求导计算图的实现，接口参考了pytorch的Tensor和autograd的设计，测试通过了一维向量，二维矩阵以及三维张量的正向运算和对应的自动求导，简单使用可以查阅demo.ipynb。
+## 1. Introduction  ##
+本项目是张量的正向计算和对应的自动求导计算图的实现，接口参考了pytorch的Tensor和autograd的设计，测试通过了一维向量，二维矩阵以及三模态张量的正向运算和对应的自动求导，简单使用可以查阅demo.ipynb。
+详细说明请参见[coding.net仓库](https://harryhong.coding.net/p/MyTorch_autograd/d/MyTorch_autograd/git)，于今年的四月初发布
 
-## 2. 模块说明 ##
-|文件名|说明|
-|:-|:-:|
-|demo.ipynb|简单的展示|
-|Tensor.py|对应pytorch的Tensor及Variable，包含具体的如求导，log, sigmoid等操作|
-|computeFlowSystem.py|计算图相关|
-|matrixSystem.py|对张量（矩阵）的具体操作，目前主要实现了求迹的操作|
-|Toolkit.py|工具包，包括对矩阵的遍历和随机采样等|
-|grad/gradController.py|导数及导函数具体的定义及局部微分操作|
-|grad/gradSystem.py|求导过程的具体实现|
+This project is the realization of the forward calculation of tensor and the corresponding automatic derivative calculation graph. The interface refers to the design of pytorch's Tensor and autograd. The test passes the forward direction of one-dimensional vector, two-dimensional matrix and three-modal tensor. For calculation and corresponding automatic derivation, you can refer to demo.ipynb for simple use.
+For details, please refer to [coding.net repository](https://harryhong.coding.net/p/MyTorch_autograd/d/MyTorch_autograd/git), released in early April this year
 
-## 3.设计说明 ##
-* Tensor类继承自numpy的ndarray，接口设计参考了numpy和pytorch。
-* 计算图的设计没有采用pytorch的动态计算图，而是参考了spark的RDD和DAG的设计，参考了其中的依赖关系，lineage等设计，后续可以加入并行算法。
-* 求导计算有两种模式，如果函数的导函数存在于导函数字典里的话就直接调用，否则参考torch的求导方式，在邻域采样算斜率。
-* 本意上是pytorch的tensor和计算图的学习和轻量版实现，由于加入了导函数字典，所以在导函数已知时进行BP在单CPU线程的情况下算cpu时间比torch稍快，但是做不到cuda的并行化...
-* 这个版本基本不更新了，有兴趣的同学可以继续加入conv,pooling和bptt等算法，在上层创建网络结构封装成网络层就能当轻量版的pytorch来用
 
-## 4.参考资料 ##
+## 2.Reference ##
 * https://zhuanlan.zhihu.com/p/24709748
 * http://spark.apachecn.org/
 * https://www.cnblogs.com/catnip/p/8760780.html
